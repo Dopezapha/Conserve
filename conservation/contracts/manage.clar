@@ -237,7 +237,7 @@
             (existing-vote (map-get? VoteRecords { project-id: project-id, voter-address: tx-sender }))
         )
         (asserts! (is-eq (get project-status project) "active") ERROR-PROJECT-CLOSED)
-        (asserts! (not existing-vote) ERROR-ALREADY-VOTED)
+        (asserts! (is-none existing-vote) ERROR-ALREADY-VOTED)
         (asserts! (>= (- (get end-block project) block-height) (var-get vote-duration)) ERROR-VOTE-CLOSED)
         
         (try! (stx-transfer? stake-amount tx-sender (as-contract tx-sender)))
