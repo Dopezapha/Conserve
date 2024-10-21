@@ -119,6 +119,7 @@
 (define-public (set-min-stake (new-min-stake uint))
     (begin
         (asserts! (is-eq tx-sender owner) ERROR-NOT-OWNER)
+        (asserts! (> new-min-stake u0) ERROR-BAD-AMOUNT)
         (var-set stake-requirement new-min-stake)
         (ok true)
     )
@@ -167,6 +168,7 @@
         (ok project-id)
     )
 )
+
 
 ;; Add Project Milestone
 (define-public (add-project-milestone 
@@ -239,6 +241,7 @@
         (asserts! (is-eq (get project-status project) "active") ERROR-PROJECT-CLOSED)
         (asserts! (is-none existing-vote) ERROR-ALREADY-VOTED)
         (asserts! (>= (- (get end-block project) block-height) (var-get vote-duration)) ERROR-VOTE-CLOSED)
+        (asserts! (> stake-amount u0) ERROR-BAD-AMOUNT)
         
         (try! (stx-transfer? stake-amount tx-sender (as-contract tx-sender)))
         
@@ -274,6 +277,11 @@
             (project (unwrap! (map-get? ProjectDetails { project-id: project-id }) ERROR-NO-PROJECT))
         )
         (asserts! (is-eq (get creator project) tx-sender) ERROR-NO-PERMISSION)
+        (asserts! (>= trees u0) ERROR-BAD-AMOUNT)
+        (asserts! (>= area u0) ERROR-BAD-AMOUNT)
+        (asserts! (>= carbon u0) ERROR-BAD-AMOUNT)
+        (asserts! (>= species u0) ERROR-BAD-AMOUNT)
+        (asserts! (>= community u0) ERROR-BAD-AMOUNT)
         
         (map-set EnvironmentalMetrics
             { project-id: project-id }
