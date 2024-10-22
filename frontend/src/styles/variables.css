@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #2E7D32;
+    --secondary-color: #1565C0;
+    --accent-color: #FFA000;
+    --background-color: #F5F5F5;
+    --text-color: #333333;
+    --error-color: #D32F2F;
+    --success-color: #388E3C;
+    --border-radius: 8px;
+    --spacing-unit: 8px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
