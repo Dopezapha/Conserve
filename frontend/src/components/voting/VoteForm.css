@@ -1,0 +1,17 @@
+.vote-form {
+    position: sticky;
+    top: calc(var(--spacing-unit) * 2);
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-top: var(--spacing-unit);
+  }
+  
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+    cursor: pointer;
+  }  
